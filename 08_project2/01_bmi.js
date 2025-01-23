@@ -7,6 +7,8 @@ form.addEventListener('submit', function (e) {
   const height = parseInt(document.querySelector('#height').value);
   const weight = parseInt(document.querySelector('#weight').value);
   const result = document.querySelector('#results');
+  // const condtion = document.querySelector('#condtion');
+
 
 
   if (height === '' || height < 0 || isNaN(height)) {
@@ -17,6 +19,24 @@ form.addEventListener('submit', function (e) {
   } 
   else {
     const bmi = (weight / ((height * height) / 10000)).toFixed(2);
-    result.innerHTML = `<span>${bmi}</span>`;
+    let category = ''; 
+    if(bmi<18.6)
+      category = "you are under weight";
+      // console.log("you are under weight")
+    
+    else if(bmi>=18.6 && bmi<=24.9){
+      // console.log("you are in normal range ");
+      category = "you are in normal range";
+    }
+    else{
+      // console.log("overweight");
+      category = "you are overweight";
+      
+      
+    }
+    result.innerHTML = `<span>${bmi}</span><br><span>${category}</span>`;
+
   }
+    
 });
+
