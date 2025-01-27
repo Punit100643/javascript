@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guess the Number</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(to right, #220a0e, #d70b60);
+      color: #fff;
+    }
+
+    .game-container {
+      text-align: center;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      width: 90%;
+      max-width: 400px;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    .button-container {
+            position: absolute;
+            top: 10px;
+            left: 60px;
+            display: flex;
+            gap: 10px;
+        }
+
+    button {
+      background: #171415;
+      color: #f0dada;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #434545;
+    }
+
+    .message {
+      margin-top: 15px;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+    <div class="button-container">
+        <button onclick="window.open('https://www.google.com', '_blank')">Google</button>
+        <button onclick="window.open('https://github.com/Punit100643/javascript', '_blank')">My github</button>
+    </div>  <div class="game-container">
+    <h1>Guess the Number!</h1>
+    <p>I'm thinking of a number between 1 and 100.</p>
+    <input type="number" id="guessInput" placeholder="Enter your guess..." />
+    <button onclick="checkGuess()">Submit Guess</button>
+    <p class="message" id="message">Good luck!</p>
+  </div>
+
+  <script>
+    const randomNumber = Math.floor(Math.random() * 100) + 1;
+    let attempts = 0;
+
+    function checkGuess() {
+      const guess = Number(document.getElementById('guessInput').value);
+      const message = document.getElementById('message');
+      attempts++;
+
+      if (!guess || guess < 1 || guess > 100) {
+        message.textContent = 'Please enter a number between 1 and 100.';
+      } else if (guess === randomNumber) {
+        message.textContent = `Correct! The number was ${randomNumber}. You guessed it in ${attempts} attempts.`;
+        message.style.color = '#4caf50';
+      } else if (guess < randomNumber) {
+        message.textContent = 'Too low! Try again.';
+        message.style.color = '#ffcc00';
+      } else {
+        message.textContent = 'Too high! Try again.';
+        message.style.color = '#ffcc00';
+      }
+    }
+  </script>
+</body>
+</html>
